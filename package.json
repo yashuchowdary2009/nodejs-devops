@@ -14,11 +14,19 @@
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
-    "dotenv": "^17.2.3",
+    "dotenv": "^17.2.4",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.1.5",
+    "mongoose": "^9.2.0",
     "nodemailer": "^7.0.13",
     "zod": "^4.3.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashuchowdary2009/nodejs-devops.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yashuchowdary2009/nodejs-devops/issues"
+  },
+  "homepage": "https://github.com/yashuchowdary2009/nodejs-devops#readme"
 }
