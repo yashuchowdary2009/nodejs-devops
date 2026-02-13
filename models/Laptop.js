@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-
-const laptopSchema = new mongoose.Schema({
-  name: String,
-  price: Number,
-  image: String
+const moongoose = require('mongoose');
+const laptopSchema = new moongoose.Schema({
+    pid: {type:Number,required:true},
+    pname : {type:String,required:true},
+    pcost : {type:Number,required:true},
+    pqty : {type:Number,required:true},
+    pimage : {type:String,required:true},
 });
-
-module.exports = mongoose.model("Laptop", laptopSchema);
+module.exports = moongoose.model("Laptop",laptopSchema);

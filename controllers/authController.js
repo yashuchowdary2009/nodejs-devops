@@ -1,49 +1,49 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+
 exports.register = async (req,res)=>{
-    try{
+    try {
         const {name,email,password} = req.body;
         const existedUser = await User.findOne({email});
         if(existedUser){
-            res.status(400).json({"message":"User Already Registered"});
+            res.status(400).json({message:"User Already Registered"});
         }
         const hashedPassword = await bcrypt.hash(password,10);
-        const new_user = new User({
+        const newUser = new User({
             name,
             email,
             password:hashedPassword
-        })
-        await new_user.save();
-        res.status(200).json({"message":"Registration Success !!!"});
+        });
+        await newUser.save();
+        res.status(200).json({message:"User Registered Successfully"});
     }catch(err){
-        res.status(500).json({"message":err.message});
+        res.status(500).json({message:"Internal Server Error"});
     }
 }
 
 exports.login = async (req,res)=>{
-    try{
+    try {
         const {email,password} = req.body;
         const db_user = await User.findOne({email});
         if(!db_user){
-            return res.status(400).json({"message":"invalid credentials"});
+            return res.status(400).json({"message":"Invalid Credentials"});
         }
-
         const flag = await bcrypt.compare(password,db_user.password);
         if(!flag){
-            return res.status(400).json({"message":"invalid credentials"});
+            return res.status(400).json({"message":"Invalid Credentials"});
         }
-
-        const token = await jwt.sign({_id:db_user._id},process.env.JWTSECRETE,{expiresIn:process.env.EXPIRES_IN});
+        const token = await jwt.sign({id:db_user._id},process.env.JWTSECRETE,{expiresIn:process.env.EXPIRES_IN});
         res.status(200).json({
-            "message":"Login Success",
+            message:"Login Successful",
             token
-        })
+        });
 
     }catch(err){
-        return res.status(500).json({"message":"server side error"});
+        console.log(err);
+        return res.status(500).json({"message":"Server Side Error"});
     }
 }
 

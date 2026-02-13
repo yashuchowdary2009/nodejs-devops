@@ -1,7 +1,8 @@
 const express = require("express");
-const router = express.Router();
 const { getAllLaptops } = require("../controllers/laptopController");
+const router = express.Router();
 
-router.get("/", getAllLaptops);
+// PUBLIC ACCESS - No token required
+router.get("/laptops", getAllLaptops);
 
 module.exports = router;

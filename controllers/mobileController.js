@@ -1,10 +1,9 @@
 const Mobile = require("../models/Mobile");
-
-exports.getAllMobiles = async (req, res) => {
-  try {
-    const mobiles = await Mobile.find();
-    res.json(mobiles);
-  } catch {
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
+exports.getAllMobiles = async (req,res)=>{
+    try{
+        const mobiles = await Mobile.find();
+        res.status(200).json(mobiles);
+    }catch(err){
+        res.status(500).json({"message":"Internal Server Side Error"});
+    }
+}

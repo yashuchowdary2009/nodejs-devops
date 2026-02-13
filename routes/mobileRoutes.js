@@ -1,7 +1,5 @@
+const {getAllMobiles} = require("../controllers/mobileController");
 const express = require("express");
 const router = express.Router();
-const { getAllMobiles } = require("../controllers/mobileController");
-
-router.get("/", getAllMobiles);
-
+router.get("/mobiles",getAllMobiles);
 module.exports = router;
